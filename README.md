@@ -64,3 +64,38 @@ void deleteMiddle(struct Node** head) {
     prev->next = slow->next;
     free(slow);
 }
+// Helper function to test insertion and deletion
+void printList(struct Node* head) {
+    struct Node* current = head;
+    while (current != NULL) {
+        printf("%d -> ", current->data);
+        current = current->next;
+    }
+    printf("NULL\n");
+}
+
+int main() {
+    // Creating a sample linked list: 1 -> 2 -> 3 -> 4 -> 5
+    
+    struct Node* head = createNode(1);
+    
+    head->next = createNode(2);
+    head->next->next = createNode(3);
+    head->next->next->next = createNode(4);
+    head->next->next->next->next = createNode(5);
+
+    printf("Original List:\n");
+    printList(head);
+
+    // Insert in the middle
+    insertMiddle(&head, 99);
+    printf("After Inserting 99 in the middle:\n");
+    printList(head);
+
+    // Delete the middle node
+    deleteMiddle(&head);
+    printf("After Deleting the middle node:\n");
+    printList(head);
+
+    return 0;
+}
